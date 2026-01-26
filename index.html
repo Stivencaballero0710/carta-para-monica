@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto de Veterinaria - Uni Pamplona (Vista Online)</title>
+    <style>
+        /* Paleta de colores */
+        :root {
+            --primario: #b71c1c;
+            --secundario: #f5f5f5;
+            --texto-claro: #ffffff;
+            --texto-oscuro: #333333;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: var(--secundario);
+            color: var(--texto-oscuro);
+            line-height: 1.6;
+        }
+
+        header {
+            text-align: center;
+            color: var(--texto-claro);
+            background-color: var(--primario);
+            padding: 2rem 1rem;
+            /* patrón decorativo usando gradientes para evitar imágenes externas */
+
+            background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.1) 0, rgba(255,255,255,0.1) 10px, transparent 10px, transparent 20px);
+        }
+
+        nav {
+            background-color: var(--primario);
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav li {
+            margin: 0;
+        }
+
+        nav a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--texto-claro);
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        nav a:hover,
+        nav a:focus {
+            background-color: #d32f2f;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+    
+    }
+
+        section {
+            margin-bottom: 2rem;
+            background-color: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            margin-top: 0;
+        }
+
+        /* Servicios */
+        .servicios-lista {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .servicio {
+            background-color: var(--secundario);
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 1rem;
+            text-align: center;
+            transition: transform 0.2s ease;
+        }
+
+        .servicio:hover {
+            transform: translateY(-4px);
+        }
+
+        .servicio h3 {
+            margin-top: 0;
+            color: var(--primario);
+        }
+
+        
+/* Formulario de cita */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        form label {
+            font-weight: bold;
+        }
+
+        form input[type="text"],
+        form input[type="date"] {
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form button {
+            width: fit-content;
+            background-color: var(--primario);
+            color: var(--texto-claro);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            transition: background-color 0.2s ease;
+        }
+
+        form button:hover {
+            background-color: #388e3c;
+        }
+
+        #confirmacion {
+            margin-top: 1rem;
+            color: var(--primario);
+
+
+            font-weight: bold;
+        }
+
+        .oculto {
+            display: none;
+        }
+
+        /* Carta */
+        .card-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        /* Contenedor de la carta: ahora es interactivo y permite animaciones */
+        .carta {
+            background-color: var(--secundario);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            max-width: 600px;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        .carta p {
+            margin-top: 0.5rem;
+        }
+
+        .card-container button {
+            background-color: var(--primario);
+            color: var(--texto-claro);
+            border: none;
+    
+         padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .card-container button:hover {
+            background-color: #d32f2f;
+        }
+
+        /* Animaciones para mostrar la carta y corazones flotantes */
+        @keyframes slideFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .carta.mostrar {
+            animation: slideFadeIn 0.6s ease-out forwards;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: 0;
+            font-size: 24px;
+            color: var(--primario);
+            animation: flotar 4s ease-out forwards;
+            pointer-events: none;
+        }
+
+     
+   @keyframes flotar {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-120px);
+                opacity: 0;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            background-color: #333;
+            color: var(--texto-claro);
+        }
+
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Un detalle especial para Mónica</h1>
+        <p>Universidad de Pamplona</p>
+        <p>Un proyecto lleno de cariño y código hecho para ti</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#cita">Agen
+da tu cita</a></li>
+            <li><a href="#carta">Carta para ti</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section id="inicio">
+            <h2>¿Quién soy?</h2>
+            <p>¡Hola! Soy un estudiante de ingeniería de sistemas que siente un gran aprecio por ti, Mónica. Este proyecto es un pequeño detalle en el que combino mi pasión por la programación con mi admiración por tu dedicación como estudiante de veterinaria.</p>
+            <p>Aquí encontrarás información útil, servicios para nuestras mascotas y, sobre todo, una carta especial pensada para ti como parte de esta demostración.</p>
+        </section>
+        <section id="servicios">
+            <h2>Servicios</h2>
+            <div class="servicios-lista">
+                <div class="servicio">
+                    <h3>🩺 Consulta General</h3>
+                    <p>Revisiones de rutina para mantener a tu mascota en ópti
+mas condiciones.</p>
+                </div>
+                <div class="servicio">
+                    <h3>💉 Vacunación</h3>
+                    <p>Vacunas esenciales para proteger a tus mascotas de enfermedades comunes.</p>
+                </div>
+                <div class="servicio">
+                    <h3>🚑 Urgencias</h3>
+                    <p>Atención inmediata para emergencias las 24 horas.</p>
+                </div>
+                <div class="servicio">
+                    <h3>✂️ Peluquería</h3>
+                    <p>Servicios de baño y peluquería para que tu mascota luzca genial.</p>
+                </div>
+            </div>
+        </section>
+        <section id="cita">
+            <h2>Agenda tu cita</h2>
+            <form id="cita-form">
+                <label for="nombre">Tu nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+             
+   <label for="mascota">Nombre de tu mascota:</label>
+                <input type="text" id="mascota" name="mascota" required>
+                <label for="fecha">Fecha de la cita:</label>
+                <input type="date" id="fecha" name="fecha" required>
+                <button type="submit">Enviar</button>
+            </form>
+            <p id="confirmacion" class="oculto">Gracias por reservar tu cita. ¡Te esperamos!</p>
+        </section>
+        <section id="carta">
+            <h2>Carta para ti, Mónica</h2>
+            <div class="card-container">
+                <button id="verCarta">Ver Carta</button>
+                <div id="cartaContenido" class="carta oculto">
+                    <p>Querida Mónica:</p>
+                    <p>
+                        Eres increíble, no solo por tu espontaneidad sino también por la manera en que te expresas y por la hermosa persona que he descub
+ierto en ti.
+                        Me has demostrado que no es cierto lo que decían los demás.
+                        Tal vez lo que por tanto tiempo llamé programación era construir esto: aunque es básico porque sigo aprendiendo, lo hago con todo mi corazón y espero que te guste.
+                        También espero que te sea útil de alguna manera, y que recuerdes que lo mínimo que mereces es atención y cuidado, no alguien que no se tome el tiempo de saber cómo te sientes y lo que te sucede.
+                    </p>
+                    <p>Con cariño,</p>
+                    <p>De parte de alguien que te aprecia</p>
+                    <button id="cerrarCarta">Cerrar Carta</button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Proyecto de Veterinaria - Uni Pamplona. Todos los derechos reservados.</p>
+    </footer>
+    <
+script>
+        // Manejo del envío de la cita
+        document.getElementById('cita-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('confirmacion').classList.remove('oculto');
+            this.reset();
+        });
+
+        // Función para generar corazones flotantes dentro de la carta
+        function generarCorazones(container) {
+            // Genera varios corazones con retrasos para dar un efecto de cascada
+            for (let i = 0; i < 8; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('span');
+                    heart.classList.add('heart');
+                    heart.textContent = '❤';
+                    // Posición horizontal aleatoria dentro del contenedor
+                    heart.style.left = Math.random() * 80 + '%';
+                    container.appendCh
+ild(heart);
+                    // Elimina el corazón después de que termine la animación
+                    setTimeout(() => heart.remove(), 4000);
+                }, i * 400);
+            }
+        }
+
+        // Mostrar y ocultar la carta con animaciones
+        const verCartaBtn = document.getElementById('verCarta');
+        const cerrarCartaBtn = document.getElementById('cerrarCarta');
+        const cartaContenido = document.getElementById('cartaContenido');
+
+        verCartaBtn.addEventListener('click', function() {
+            cartaContenido.classList.remove('oculto');
+            cartaContenido.classList.add('mostrar');
+            generarCorazones(cartaContenido);
+        });
+
+        cerrarCartaBtn.addEventListener('click', function() {
+            cartaContenido.classList.add('oculto');
+            cartaContenido.classList.remove('mostrar');
+        });
+    </script>
+</body>
+</html>
