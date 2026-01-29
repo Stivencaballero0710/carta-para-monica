@@ -1,34 +1,36 @@
-                                                <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyecto de Veterinaria - Uni Pamplona (Vista Online)</title>
+    <!-- Google Fonts for elegant typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* Paleta de colores */
+        /* Paleta de colores renovada para un aspecto cálido y romántico */
         :root {
-            --primario: #b71c1c;
-            --secundario: #f5f5f5;
+            --primario: #e91e63;
+            --secundario: #fff0f6;
+            --accent: #9c27b0;
             --texto-claro: #ffffff;
-            --texto-oscuro: #333333;
+            --texto-oscuro: #4a4a4a;
         }
 
         body {
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: var(--secundario);
-            color: var(--texto-oscuro);
-            line-height: 1.6;
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: linear-gradient(to bottom right, var(--secundario), #ffe4e1);
+    color: var(--texto-oscuro);
+    line-height: 1.6;
+    min-height: 100vh;
         }
 
         header {
             text-align: center;
             color: var(--texto-claro);
-            background-color: var(--primario);
-            padding: 2rem 1rem;
-            /* patrón decorativo usando gradientes para evitar imágenes externas */
-
-            background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.1) 0, rgba(255,255,255,0.1) 10px, transparent 10px, transparent 20px);
+    background: linear-gradient(135deg, var(--primario), var(--accent));
+    padding: 2rem 1rem;
+    position: relative;
         }
 
         nav {
@@ -58,22 +60,21 @@
 
         nav a:hover,
         nav a:focus {
-            background-color: #d32f2f;
+            background-color: var(--accent);
         }
 
         main {
             max-width: 1200px;
             margin: 0 auto;
             padding: 1rem;
-    
-    }
+        }
 
         section {
             margin-bottom: 2rem;
-            background-color: #fff;
+            background-color: #ffffff;
             padding: 1.5rem;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         section h2 {
@@ -105,8 +106,7 @@
             color: var(--primario);
         }
 
-        
-/* Formulario de cita */
+        /* Formulario de cita */
         form {
             display: flex;
             flex-direction: column;
@@ -143,8 +143,6 @@
         #confirmacion {
             margin-top: 1rem;
             color: var(--primario);
-
-
             font-weight: bold;
         }
 
@@ -162,15 +160,17 @@
 
         /* Contenedor de la carta: ahora es interactivo y permite animaciones */
         .carta {
-            background-color: var(--secundario);
-            padding: 1rem;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            max-width: 600px;
+            background-color: #ffffff;
+            padding: 2rem;
+            border-radius: 12px;
+            border: none;
+            max-width: 700px;
+            margin: auto;
             position: relative;
             overflow: hidden;
             opacity: 0;
-            transform: translateY(-20px);
+            transform: translateY(-40px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
 
         .carta p {
@@ -181,22 +181,24 @@
             background-color: var(--primario);
             color: var(--texto-claro);
             border: none;
-    
-         padding: 0.5rem 1rem;
-            border-radius: 4px;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
             cursor: pointer;
-            transition: background-color 0.2s ease;
+            font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
         }
 
         .card-container button:hover {
-            background-color: #d32f2f;
+            background-color: var(--accent);
+            transform: translateY(-2px);
         }
 
         /* Animaciones para mostrar la carta y corazones flotantes */
         @keyframes slideFadeIn {
             from {
                 opacity: 0;
-                transform: translateY(-20px);
+                transform: translateY(-40px);
             }
             to {
                 opacity: 1;
@@ -211,14 +213,13 @@
         .heart {
             position: absolute;
             bottom: 0;
-            font-size: 24px;
-            color: var(--primario);
+            font-size: 20px;
+            color: var(--accent);
             animation: flotar 4s ease-out forwards;
             pointer-events: none;
         }
 
-     
-   @keyframes flotar {
+        @keyframes flotar {
             0% {
                 transform: translateY(0);
                 opacity: 1;
@@ -227,6 +228,13 @@
                 transform: translateY(-120px);
                 opacity: 0;
             }
+        }
+
+        /* Estilo para la imagen decorativa dentro de la carta */
+        .carta img.decorativo {
+            display: block;
+            width: 150px;
+            margin: 0 auto 1rem;
         }
 
         footer {
@@ -253,8 +261,7 @@
         <ul>
             <li><a href="#inicio">Inicio</a></li>
             <li><a href="#servicios">Servicios</a></li>
-            <li><a href="#cita">Agen
-da tu cita</a></li>
+            <li><a href="#cita">Agenda tu cita</a></li>
             <li><a href="#carta">Carta para ti</a></li>
         </ul>
     </nav>
@@ -269,8 +276,7 @@ da tu cita</a></li>
             <div class="servicios-lista">
                 <div class="servicio">
                     <h3>🩺 Consulta General</h3>
-                    <p>Revisiones de rutina para mantener a tu mascota en ópti
-mas condiciones.</p>
+                    <p>Revisiones de rutina para mantener a tu mascota en óptimas condiciones.</p>
                 </div>
                 <div class="servicio">
                     <h3>💉 Vacunación</h3>
@@ -291,8 +297,7 @@ mas condiciones.</p>
             <form id="cita-form">
                 <label for="nombre">Tu nombre:</label>
                 <input type="text" id="nombre" name="nombre" required>
-             
-   <label for="mascota">Nombre de tu mascota:</label>
+                <label for="mascota">Nombre de tu mascota:</label>
                 <input type="text" id="mascota" name="mascota" required>
                 <label for="fecha">Fecha de la cita:</label>
                 <input type="date" id="fecha" name="fecha" required>
@@ -305,10 +310,11 @@ mas condiciones.</p>
             <div class="card-container">
                 <button id="verCarta">Ver Carta</button>
                 <div id="cartaContenido" class="carta oculto">
-                    <p>Querida Mónica:</p>
+                    <!-- Imagen decorativa al inicio de la carta -->
+                    <img class="decorativo" src="data:image/jpeg;base64,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" alt="Decoración de corazones" />
+                    <p style="font-family:'Dancing Script', cursive; font-size:1.8rem; color:var(--accent); margin-top:0;">Querida Mónica:</p>
                     <p>
-                        Eres increíble, no solo por tu espontaneidad sino también por la manera en que te expresas y por la hermosa persona que he descub
-ierto en ti.
+                        Eres increíble, no solo por tu espontaneidad sino también por la manera en que te expresas y por la hermosa persona que he descubierto en ti.
                         Me has demostrado que no es cierto lo que decían los demás.
                         Tal vez lo que por tanto tiempo llamé programación era construir esto: aunque es básico porque sigo aprendiendo, lo hago con todo mi corazón y espero que te guste.
                         También espero que te sea útil de alguna manera, y que recuerdes que lo mínimo que mereces es atención y cuidado, no alguien que no se tome el tiempo de saber cómo te sientes y lo que te sucede.
@@ -323,8 +329,7 @@ ierto en ti.
     <footer>
         <p>&copy; 2026 Proyecto de Veterinaria - Uni Pamplona. Todos los derechos reservados.</p>
     </footer>
-    <
-script>
+    <script>
         // Manejo del envío de la cita
         document.getElementById('cita-form').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -342,8 +347,7 @@ script>
                     heart.textContent = '❤';
                     // Posición horizontal aleatoria dentro del contenedor
                     heart.style.left = Math.random() * 80 + '%';
-                    container.appendCh
-ild(heart);
+                    container.appendChild(heart);
                     // Elimina el corazón después de que termine la animación
                     setTimeout(() => heart.remove(), 4000);
                 }, i * 400);
